@@ -1,3 +1,5 @@
+import { gql } from 'https://deno.land/x/obsidian/mod.ts'; 
+
 // SCHEMA EXAMPLE =====================================================
 // sample schema for examples
 
@@ -150,7 +152,6 @@ const cache = {
 // EXAMPLE 2
 // ================================================================================
 // sample query to show how the cache stores queries with arguments
-
 const ALL_ACTION_MOVIES = gql`
   query AllActionMovies {
     movies(input: { genre: ACTION }) {
@@ -687,3 +688,5 @@ const cache7 = {
   'Actor~4': { id: '4', firstName: 'Patti', lastName: 'LuPone' },
   'Actor~5': { id: '5', firstName: 'Gary', lastName: 'Oldman' },
 };
+
+export {typeDefs, ALL_MOVIES, respAllMovies, cache,ALL_ACTION_MOVIES,respAllActionMovies,cache2};

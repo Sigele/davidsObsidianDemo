@@ -70,6 +70,7 @@ export async function ObsidianRouter<T>({
   redisPortExport = redisPort;
   const router = new Router();
   const schema = makeExecutableSchema({ typeDefs, resolvers });
+  console.log(resolvers)
   // const cache = new LFUCache(50); // If using LFU Browser Caching, uncomment line
   const cache = new Cache(); // If using Redis caching, uncomment line
   cache.cacheClear();
@@ -88,6 +89,7 @@ export async function ObsidianRouter<T>({
       if (maxQueryDepth) queryDepthLimiter(body.query, maxQueryDepth); // If a securty limit is set for maxQueryDepth, invoke queryDepthLimiter, which throws error if query depth exceeds maximum
       body = { query: restructure(body) }; // Restructre gets rid of variables and fragments from the query
       let cacheQueryValue = await cache.read(body.query)
+      console.log('REQUEST BODY',body)
       // Is query in cache? 
       if (useCache && useQueryCache && cacheQueryValue) {
         console.log('query found in cache:', cacheQueryValue)
@@ -116,7 +118,7 @@ export async function ObsidianRouter<T>({
           body.variables || undefined,
           body.operationName || undefined
         );
-        console.log('Query not found in cacahe')
+        console.log('Query not found in cache')
         const normalizedGQLResponse = normalizeObject(gqlResponse, customIdentifier);
         if (isMutation(body)) {
           const queryString = await request.body().value;

@@ -1,3 +1,5 @@
+// related to denon but possibly redundant
+
 {
   "name": "obsidian",
   "description": "GraphQL, built for Deno - a native GraphQL caching client and server module",

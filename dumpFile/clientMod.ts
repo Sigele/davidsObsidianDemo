@@ -1,3 +1,5 @@
+//consolidate with mod.ts
+
 import {
   ObsidianWrapper,
   useObsidian,
